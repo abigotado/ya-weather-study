@@ -6,4 +6,6 @@ import java.io.IOException;
 
 public interface IWeatherRepository {
     Weather getWeather() throws IOException, InterruptedException;
+
+    Weather getWeather(double lat, double lon) throws IOException, InterruptedException;
 }

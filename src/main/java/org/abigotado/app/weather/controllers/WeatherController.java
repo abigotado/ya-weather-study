@@ -15,4 +15,8 @@ public class WeatherController {
     public Weather getWeather() throws IOException, InterruptedException {
         return weatherRepository.getWeather();
     }
+
+    public Weather getWeather(double lat, double lon) throws IOException, InterruptedException {
+        return weatherRepository.getWeather(lat, lon);
+    }
 }
