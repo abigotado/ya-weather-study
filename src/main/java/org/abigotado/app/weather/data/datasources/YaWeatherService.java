@@ -12,15 +12,14 @@ import java.util.Map;
 
 import static org.abigotado.app.core.utils.JsonSerializable.reader;
 import static org.abigotado.app.core.utils.JsonSerializable.writer;
+import static org.abigotado.app.core.utils.StringUtils.*;
 
 public class YaWeatherService {
     private static final String forecastEndpoint = "forecast";
-    private static final String latQueryString = "-34.56504480503466";
-    private static final String lonQueryString = "-58.439427";
 
-    public Weather getWeather() throws IOException, InterruptedException {
+    public Weather getWeather(double lat, double lon) throws IOException, InterruptedException {
 
-        final Map<String, String> queryParameters = Map.of("lat", latQueryString, "lon", lonQueryString);
+        final Map<String, String> queryParameters = Map.of("lat", Double.toString(lat), "lon", Double.toString(lon));
         final URI uri = Http.buildYaWeatherUri(forecastEndpoint, queryParameters);
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -38,12 +37,16 @@ public class YaWeatherService {
 
             Weather weather = reader.readValue(response.body(), Weather.class);
 
-            System.out.println("Response Code: " + response.statusCode());
-            System.out.println("Response Body: " + prettyJsonString);
+            System.out.println(responseCodeString + response.statusCode());
+            System.out.println(responseBodyString + prettyJsonString);
 
             return weather;
         } catch (Exception e) {
-            System.err.println("Error making HTTP request: " + e.getMessage() + "\n" + Arrays.toString(e.getStackTrace()));
+            System.err.println(errorMakingHttpRequestString
+                               + e.getMessage()
+                               + "\n"
+                               + stackTraceString
+                               + Arrays.toString(e.getStackTrace()));
             throw e;
         }
     }
