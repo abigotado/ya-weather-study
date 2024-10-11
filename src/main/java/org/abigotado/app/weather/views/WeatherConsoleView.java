@@ -30,8 +30,12 @@ public class WeatherConsoleView {
     }
 
     public void build() {
-        showIntroduction(); try {
+        showIntroduction();
+
+        try {
             Weather weather = fetchWeather(); System.out.println(temperatureString + weather.getFact().getTemp());
+            final int averageTemperature = controller.calculateAverageTemperature(weather);
+            System.out.println(averageTemperatureString + averageTemperature);
         } catch (Exception e) {
             System.out.println(programClosedErrorString);
         } finally {

@@ -12,6 +12,7 @@ public class StringUtils {
     public static final String errorMakingHttpRequestString = "Error making HTTP request: ";
     public static final String stackTraceString = "StackTrace: ";
     public static final String temperatureString = "Temperature: ";
+    public static final String averageTemperatureString = "Weekly average temperature: ";
     public static final String responseCodeString = "Response Code: ";
     public static final String responseBodyString = "Response Body: ";
     public static final String programClosedErrorString = "Program closed because of error. Please try again.";
