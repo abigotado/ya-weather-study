@@ -37,15 +37,14 @@ public class YaWeatherService {
 
             Weather weather = reader.readValue(response.body(), Weather.class);
 
-            System.out.println(responseCodeString + response.statusCode());
-            System.out.println(responseBodyString + prettyJsonString);
+            System.out.println(RESPONSE_CODE_STRING + response.statusCode());
+            System.out.println(RESPONSE_BODY_STRING + prettyJsonString);
 
             return weather;
         } catch (Exception e) {
-            System.err.println(errorMakingHttpRequestString
+            System.err.println(ERROR_MAKING_HTTP_REQUEST_STRING
                                + e.getMessage()
-                               + "\n"
-                               + stackTraceString
+                               + "\n" + STACK_TRACE_STRING
                                + Arrays.toString(e.getStackTrace()));
             throw e;
         }

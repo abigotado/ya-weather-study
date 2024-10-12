@@ -18,12 +18,12 @@ public class WeatherConsoleView {
     }
 
     private static void showIntroduction() {
-        System.out.println(introductionString);
+        System.out.println(INTRODUCTION_STRING);
     }
 
     private static double setCoordinate(String introduction) {
         System.out.println(introduction); while (!scanner.hasNextDouble()) {
-            System.out.println(incorrectCoordinatesString); scanner.next();
+            System.out.println(INCORRECT_COORDINATES_STRING); scanner.next();
         }
 
         return scanner.nextDouble();
@@ -33,11 +33,11 @@ public class WeatherConsoleView {
         showIntroduction();
 
         try {
-            Weather weather = fetchWeather(); System.out.println(temperatureString + weather.getFact().getTemp());
+            Weather weather = fetchWeather(); System.out.println(TEMPERATURE_STRING + weather.getFact().getTemp());
             final int averageTemperature = controller.calculateAverageTemperature(weather);
-            System.out.println(averageTemperatureString + averageTemperature);
+            System.out.println(AVERAGE_TEMPERATURE_STRING + averageTemperature);
         } catch (Exception e) {
-            System.out.println(programClosedErrorString);
+            System.out.println(PROGRAM_CLOSED_ERROR_STRING);
         } finally {
             scanner.close();
         }
@@ -48,7 +48,7 @@ public class WeatherConsoleView {
         String answer = scanner.next();
 
         while (!answer.equals("y") && !answer.equalsIgnoreCase("n")) {
-            System.out.println(incorrectAnswerString); answer = scanner.next();
+            System.out.println(INCORRECT_ANSWER_STRING); answer = scanner.next();
         }
 
         if (answer.equalsIgnoreCase("y")) {
@@ -59,16 +59,16 @@ public class WeatherConsoleView {
     }
 
     private Weather getDefaultWeather() throws IOException, InterruptedException {
-        System.out.println(gettingWeatherString); return controller.getWeather();
+        System.out.println(GETTING_WEATHER_STRING); return controller.getWeather();
 
     }
 
     private Weather getWeatherByCoordinates() throws IOException, InterruptedException {
         double lat; double lon;
 
-        lat = setCoordinate(enterLatString); lon = setCoordinate(enterLonString);
+        lat = setCoordinate(ENTER_LAT_STRING); lon = setCoordinate(ENTER_LON_STRING);
 
-        System.out.println(gettingWeatherString); return controller.getWeather(lat, lon);
+        System.out.println(GETTING_WEATHER_STRING); return controller.getWeather(lat, lon);
 
     }
 }
