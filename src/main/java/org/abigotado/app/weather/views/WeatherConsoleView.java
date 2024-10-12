@@ -47,11 +47,11 @@ public class WeatherConsoleView {
     private Weather fetchWeather() throws IOException, InterruptedException {
         String answer = scanner.next();
 
-        while (!answer.equals("y") && !answer.equals("n")) {
+        while (!answer.equals("y") && !answer.equalsIgnoreCase("n")) {
             System.out.println(incorrectAnswerString); answer = scanner.next();
         }
 
-        if (answer.equals("y")) {
+        if (answer.equalsIgnoreCase("y")) {
             return getWeatherByCoordinates();
         }
 
