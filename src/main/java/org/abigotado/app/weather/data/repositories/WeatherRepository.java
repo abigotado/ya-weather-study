@@ -7,8 +7,8 @@ import org.abigotado.app.weather.domain.models.Weather;
 import java.io.IOException;
 
 public class WeatherRepository implements IWeatherRepository {
-    private static final double defaultLat = -34.56504480503466;
-    private static final double defaultLon = -58.439427;
+    private static final double DEFAULT_LAT = -34.56504480503466;
+    private static final double DEFAULT_LON = -58.439427;
 
     private final YaWeatherService yaWeatherService;
 
@@ -18,7 +18,7 @@ public class WeatherRepository implements IWeatherRepository {
 
     @Override
     public Weather getWeather() throws IOException, InterruptedException {
-        return yaWeatherService.getWeather(defaultLat, defaultLon);
+        return yaWeatherService.getWeather(DEFAULT_LAT, DEFAULT_LON);
     }
 
     public Weather getWeather(double lat, double lon) throws IOException, InterruptedException {
